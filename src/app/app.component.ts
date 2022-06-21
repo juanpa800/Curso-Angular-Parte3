@@ -10,6 +10,7 @@ export class AppComponent {
   message: string = "";
   userName: string = "";
   password: string = "";
+  try = 0;
   registeredUsers: string[] = []; //declare type of array, default is never
   passwordList: string[] = [];
 
@@ -17,9 +18,11 @@ export class AppComponent {
   LogIn(): string {
     if (this.passwordList[this.registeredUsers.indexOf(this.userName)] == this.password) {
       this.message = "Log In complete";
+      this.try = 0;
     }
     else {
       this.message = "Incorrect user or password"
+      this.try += 1;
     }
     return "0";
   }
