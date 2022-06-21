@@ -57,11 +57,34 @@
         <p>{{message}}</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col d-flex justify-content-center">
-        <p *ngIf="try>2"><br><a href="www.youtube.com">cambiar contraseña</a></p>
+    <div class="container" *ngIf="tryToLogIn>2; else chance">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <p><br><a href="change_password">change password</a></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <h3>Existing users</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let user of registeredUsers">{{user}}</li>
+          </ul>
+        </div>
       </div>
     </div>
+    <ng-template #chance>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="text-center" *ngIf="tryToLogIn!=0">remaining attempts {{3-tryToLogIn}}</p>
+          </div>
+        </div>
+      </div>      
+    </ng-template>
   </div>
 </body>
 
