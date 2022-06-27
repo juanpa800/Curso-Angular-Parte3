@@ -11,6 +11,7 @@ export class AppComponent {
   userName: string = "";
   password: string = "";
   tryToLogIn = 0;
+  emptyField = false;
   registeredUsers: string[] = ["juan"]; //declare type of array, default is never
   passwordList: string[] = ["123"];
 
@@ -28,14 +29,24 @@ export class AppComponent {
   }
 
   SignIn() {
-    if ((this.registeredUsers).includes(this.userName)) {
-      this.message = "User " + this.userName + " already exist";
+
+
+    if (this.userName == "" || this.password == "") {
+      this.emptyField = true;
+      // alert("The user field or password field are empty");
     }
     else {
-      this.registeredUsers.push(this.userName);
-      this.passwordList.push(this.password);
-      this.message = "User " + this.userName + " Sign in";
+      this.tryToLogIn = 0;
+      this.emptyField = false;
+      if ((this.registeredUsers).includes(this.userName)) {
+        this.message = "User " + this.userName + " already exist";
+      }
+      else {
+        this.registeredUsers.push(this.userName);
+        this.passwordList.push(this.password);
+        this.message = "User " + this.userName + " Sign in";
 
+      }
     }
   }
 }
